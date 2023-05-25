@@ -6,7 +6,8 @@ from scipy import spatial
 import matplotlib.pyplot as plt
 from sklearn.preprocessing import StandardScaler
 from sentence_transformers import SentenceTransformer
-
+print()
+print("Libraries imported successfully.")
 
 # Read data and their responses from a CSV file, replace data.csv with own link or file name
 data_map = {}
@@ -42,9 +43,9 @@ label = list(person_embeddings.keys())
 # Plotting and annotating data points
 plt.scatter(x,y)
 for i, name in enumerate(label):
-    plt.annotate(name, (x[i], y[i]), fontsize="15", color="black")  # Increased font size to 12 and set color to white
+    plt.annotate(name, (x[i], y[i]), fontsize="12", color="black")  # Increased font size to 12 and set color to white
 
 # Clean-up and Export
 plt.axis('off')
-plt.savefig('visualization.png', dpi=800)
+plt.savefig('visualization.png', dpi=1000)
 print("Visualization saved successfully.")
