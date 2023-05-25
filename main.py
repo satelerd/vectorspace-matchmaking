@@ -7,10 +7,6 @@ import matplotlib.pyplot as plt
 from sklearn.preprocessing import StandardScaler
 from sentence_transformers import SentenceTransformer
 
-# Ignore innecesary package warnings
-warnings.simplefilter(action='ignore', category=FutureWarning)
-warnings.filterwarnings('ignore')
-
 
 # Read data and their responses from a CSV file, replace data.csv with own link or file name
 data_map = {}
