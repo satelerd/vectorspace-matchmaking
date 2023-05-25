@@ -11,7 +11,7 @@ print("Libraries imported successfully.")
 
 # Read data and their responses from a CSV file, replace data.csv with own link or file name
 data_map = {}
-with open('data.csv', newline='') as csvfile:
+with open('data.csv', newline='', encoding='utf-8') as csvfile:
     data = csv.reader(csvfile, delimiter=',', quotechar='"')
     next(data)  # Skip the header row
     for row in data:
@@ -43,7 +43,10 @@ label = list(person_embeddings.keys())
 # Plotting and annotating data points
 plt.scatter(x,y)
 for i, name in enumerate(label):
-    plt.annotate(name, (x[i], y[i]), fontsize="12", color="black")  # Increased font size to 12 and set color to white
+    if "NPC" in name:
+        plt.annotate("", (x[i], y[i]), fontsize="0", color="black")
+    else:
+        plt.annotate(name, (x[i], y[i]), fontsize="12", color="black")  # Increased font size to 12 and set color to white
 
 # Clean-up and Export
 plt.axis('off')
