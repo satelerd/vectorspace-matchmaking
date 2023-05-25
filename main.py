@@ -15,7 +15,6 @@ with open('data.csv', newline='', encoding='utf-8') as csvfile:
     data = csv.reader(csvfile, delimiter=',', quotechar='"')
     next(data)  # Skip the header row
     for row in data:
-        print(row)
         name, paragraph = row
         data_map[paragraph] = name
 print("Data loaded successfully.")
