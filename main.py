@@ -15,6 +15,7 @@ with open('data.csv', newline='', encoding='utf-8') as csvfile:
     data = csv.reader(csvfile, delimiter=',', quotechar='"')
     next(data)  # Skip the header row
     for row in data:
+        print(row)
         name, paragraph = row
         data_map[paragraph] = name
 print("Data loaded successfully.")
@@ -40,15 +41,32 @@ x = [row[0] for row in reduced_data]
 y = [row[1] for row in reduced_data]
 label = list(person_embeddings.keys())
 
+# Colors for each person
+colors = []
+for name in label:
+    if "NPC" in name:
+        colors.append("blue")
+    else:
+        colors.append("red")
+
 # Plotting and annotating data points
-plt.scatter(x,y)
+plt.scatter(x,y, c=colors)
 for i, name in enumerate(label):
     if "NPC" in name:
         plt.annotate("", (x[i], y[i]), fontsize="0", color="black")
     else:
-        plt.annotate(name, (x[i], y[i]), fontsize="12", color="black")  # Increased font size to 12 and set color to white
+        plt.annotate(name, (x[i], y[i]), fontsize="10", color="black")  # Increased font size to 12 and set color to white
 
 # Clean-up and Export
 plt.axis('off')
 plt.savefig('visualization.png', dpi=1000)
 print("Visualization saved successfully.")
+
+
+
+# q: whats the line that plots the points in the graph?
+# a: plt.scatter(x,y)
+# q: how to change the color of the points depending on the person?
+# a: plt.scatter(x,y, c=colors)
+# write the following code to create a list of colors for each person, if the person name is "NPC" then the color is blue, otherwise the color is red
+
