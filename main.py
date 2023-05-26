@@ -52,7 +52,7 @@ for name in label:
 plt.scatter(x,y, c=colors)
 for i, name in enumerate(label):
     if "NPC" in name:
-        plt.annotate("", (x[i], y[i]), fontsize="0", color="black")
+        plt.annotate(name, (x[i], y[i]), fontsize="0", color="black")
     else:
         plt.annotate(name, (x[i], y[i]), fontsize="10", color="black")  # Increased font size to 12 and set color to white
 
