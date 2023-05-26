@@ -27,7 +27,7 @@ print("Embeddings generated successfully.")
     
 # Create a dictionary to store embeddings for each person
 person_embeddings = {data_map[paragraph]: embedding for paragraph, embedding in zip(paragraphs, embeddings)}
-
+print(person_embeddings)
 # Reducing dimensionality of embedding data, scaling to coordinate domain/range
 reducer = umap.UMAP()
 scaler = StandardScaler()
@@ -54,7 +54,7 @@ for i, name in enumerate(label):
     if "NPC" in name:
         plt.annotate(name, (x[i], y[i]), fontsize="0", color="black")
     else:
-        plt.annotate(name, (x[i], y[i]), fontsize="10", color="black")  # Increased font size to 12 and set color to white
+        plt.annotate(name, (x[i], y[i]), fontsize="7", color="black")  # Increased font size to 12 and set color to white
 
 # Clean-up and Export
 plt.axis('off')
