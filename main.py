@@ -61,11 +61,3 @@ plt.axis('off')
 plt.savefig('visualization.png', dpi=1000)
 print("Visualization saved successfully.")
 
-
-
-# q: whats the line that plots the points in the graph?
-# a: plt.scatter(x,y)
-# q: how to change the color of the points depending on the person?
-# a: plt.scatter(x,y, c=colors)
-# write the following code to create a list of colors for each person, if the person name is "NPC" then the color is blue, otherwise the color is red
-
