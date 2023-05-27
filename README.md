@@ -1,6 +1,7 @@
 ﻿# Vectorspace Matchmaking
 
 Este proyecto nace de una fascinación por el procesamiento del lenguaje natural, el aprendizaje automático y la visualización de datos. Usando el framework de embeddings SentenceTransformer y varias bibliotecas de Python, podemos crear una representación visual multidimensional que revela las conexiones semánticas en un conjunto de datos de texto. 
+<img src="https://github.com/satelerd/vectorspace-matchmaking/assets/62968964/8e46a626-14d5-43a4-8fd4-fdc1cac1a9f4" width="750" height="500">
 
 ## ¿Qué hace este proyecto?
 
