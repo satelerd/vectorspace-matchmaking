@@ -1,0 +1,6 @@
+umap
+seaborn
+matplotlib
+scikit-learn
+scipy
+sentence-transformers
