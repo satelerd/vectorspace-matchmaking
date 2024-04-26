@@ -9,9 +9,14 @@ from sentence_transformers import SentenceTransformer
 print()
 print("Libraries imported successfully.")
 
+# Paths
+path = 'example'
+data_path = 'data'
+img_path = 'visualization9'
+
 # Read data and their responses from a CSV file, replace data.csv with own link or file name
 data_map = {}
-with open('data.csv', newline='', encoding='utf-8') as csvfile:
+with open(f'./data/{path}/{data_path}.csv', newline='', encoding='utf-8') as csvfile:
     data = csv.reader(csvfile, delimiter=',', quotechar='"')
     next(data)  # Skip the header row
     for row in data:
@@ -58,6 +63,6 @@ for i, name in enumerate(label):
 
 # Clean-up and Export
 plt.axis('off')
-plt.savefig('visualization.png', dpi=1000)
+plt.savefig(f'./imgs/{path}/{img_path}.png', dpi=1000)
 print("Visualization saved successfully.")
 
