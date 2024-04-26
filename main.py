@@ -12,7 +12,7 @@ print("Libraries imported successfully.")
 # Paths
 path = 'example'
 data_path = 'data'
-img_path = 'visualization9'
+img_path = 'visualization10'
 
 # Read data and their responses from a CSV file, replace data.csv with own link or file name
 data_map = {}
