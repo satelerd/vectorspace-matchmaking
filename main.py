@@ -10,9 +10,9 @@ print()
 print("Libraries imported successfully.")
 
 # Paths
-path = 'example'
-data_path = 'data'
-img_path = 'visualization10'
+path = 'SmartVOC'
+data_path = 'data4.1'
+img_path = 'visualization4.5'
 
 # Read data and their responses from a CSV file, replace data.csv with own link or file name
 data_map = {}
@@ -45,24 +45,108 @@ x = [row[0] for row in reduced_data]
 y = [row[1] for row in reduced_data]
 label = list(person_embeddings.keys())
 
-# Colors for each person
-colors = []
-for name in label:
-    if "NPC" in name:
-        colors.append("blue")
-    else:
-        colors.append("red")
+# Define colors for each profile
+def get_color(name):
+    # if "Positiva" in name:
+    #     return "green"
+    # elif "Cauta" in name:
+    #     return "red"
+    # elif "Escéptica" in name:
+    #     return "blue"
+    
 
+    # if "Eficiencia Operativa" in name:
+    #     return "green"
+    # elif "Rapidez en Procesos" in name:
+    #     return "blue"
+    # elif "Capacidad de Personalización" in name:
+    #     return "orange"
+    # elif "Ahorro de Tiempo" in name:
+    #     return "purple"
+    # elif "No Ventajas" in name:
+    #     return "black"
+    
+    
+    # if "Reflexivo" in name:
+    #     return "green"
+    # elif "Entusiasta" in name:
+    #     return "blue"
+    # elif "Cauteloso" in name:
+    #     return "yellow"
+
+
+
+
+
+
+    if "Investigador en Tecnología" in name:
+        return "red"
+    elif "Profesional Independiente en Diseño Gráfico" in name:
+        return "green"
+    elif "Gerente de Marketing en una Startup" in name:
+        return "orange"
+    elif "CEO de Retail" in name:
+        return "purple"
+    elif "Director de Finanzas de un Banco" in name:
+        return "blue"
+    elif "Profesional Independiente en Diseño Gráfico" in name:
+        return "black"
+    elif "Experto en Telecomunicaciones" in name:
+        return "brown"
+    elif "Analista de Datos" in name:
+        return "cyan"
+    elif "Desarrollador de IA" in name:
+        return "magenta"
+    elif "Consultor en Transformación Digital" in name:
+        return "yellow"
+    elif "Estudiante de Tecnología" in name:
+        return "pink"
+    elif "Empleado Administrativo" in name:
+        return "lime"
+    elif "Profesor Universitario" in name:
+        return "teal"
+    elif "Freelance de Contenidos" in name:
+        return "navy"
+    elif "Responsable de Recursos Humanos" in name:
+        return "maroon"
+    elif "Consultor de Estrategia Empresarial" in name:
+        return "olive"
+    elif "Director de Operaciones" in name:
+        return "aqua"
+    elif "Gerente de Finanzas" in name:
+        return "silver"
+    elif "Director de Marketing" in name:
+        return "gold"
+    elif "Gerente de Producto" in name:
+        return "coral"
+    elif "Responsable de Seguridad Informática" in name:
+        return "khaki"
+    elif "Jefe de Desarrollo de Negocios" in name:
+        return "orchid"
+    elif "Consultor de Tecnología" in name:
+        return "plum"
+    elif "Chief Data Officer" in name:
+        return "salmon"
+    elif "Responsable de Innovación" in name:
+        return "violet"
+    else:
+        return "grey"  # Default color
+
+# Assign colors to each label
+colors = [get_color(name) for name in label]
+
+print(x, y)
+print("------")
+print(colors)
 # Plotting and annotating data points
-plt.scatter(x,y, c=colors)
+plt.scatter(x, y, c=colors)
 for i, name in enumerate(label):
     if "NPC" in name:
         plt.annotate(name, (x[i], y[i]), fontsize="0", color="black")
     else:
-        plt.annotate(name, (x[i], y[i]), fontsize="7", color="black")  # Increased font size to 12 and set color to white
+        plt.annotate(name[0:19], (x[i], y[i]), fontsize="3", color="black")  # Increased font size to 12 and set color to white
 
 # Clean-up and Export
 plt.axis('off')
 plt.savefig(f'./imgs/{path}/{img_path}.png', dpi=1000)
 print("Visualization saved successfully.")
-
