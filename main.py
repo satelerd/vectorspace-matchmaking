@@ -11,17 +11,19 @@ print("Libraries imported successfully.")
 
 # Paths
 path = 'SmartVOC'
-data_path = 'data4.1'
-img_path = 'visualization4.5'
+data_path = 'demo1'
+img_path = 'demo1'
 
 # Read data and their responses from a CSV file, replace data.csv with own link or file name
 data_map = {}
+gsc_map = {}
 with open(f'./data/{path}/{data_path}.csv', newline='', encoding='utf-8') as csvfile:
     data = csv.reader(csvfile, delimiter=',', quotechar='"')
     next(data)  # Skip the header row
     for row in data:
-        name, paragraph = row
+        name, paragraph, gsc = row  # Asumimos que gsc es la tercera columna
         data_map[paragraph] = name
+        gsc_map[name] = gsc
 print("Data loaded successfully.")
 
 # Generate sentence embeddings
@@ -45,40 +47,9 @@ x = [row[0] for row in reduced_data]
 y = [row[1] for row in reduced_data]
 label = list(person_embeddings.keys())
 
-# Define colors for each profile
-def get_color(name):
-    # if "Positiva" in name:
-    #     return "green"
-    # elif "Cauta" in name:
-    #     return "red"
-    # elif "Escéptica" in name:
-    #     return "blue"
-    
-
-    # if "Eficiencia Operativa" in name:
-    #     return "green"
-    # elif "Rapidez en Procesos" in name:
-    #     return "blue"
-    # elif "Capacidad de Personalización" in name:
-    #     return "orange"
-    # elif "Ahorro de Tiempo" in name:
-    #     return "purple"
-    # elif "No Ventajas" in name:
-    #     return "black"
-    
-    
-    # if "Reflexivo" in name:
-    #     return "green"
-    # elif "Entusiasta" in name:
-    #     return "blue"
-    # elif "Cauteloso" in name:
-    #     return "yellow"
 
 
-
-
-
-
+def get_color_by_raw_interview(name):
     if "Investigador en Tecnología" in name:
         return "red"
     elif "Profesional Independiente en Diseño Gráfico" in name:
@@ -132,6 +103,64 @@ def get_color(name):
     else:
         return "grey"  # Default color
 
+def get_color_by_gsc(name):
+    if "Positiva" in name:
+        return "green"
+    elif "Cauta" in name:
+        return "red"
+    elif "Escéptica" in name:
+        return "blue"
+    
+
+    if "Eficiencia Operativa" in name:
+        return "green"
+    elif "Rapidez en Procesos" in name:
+        return "blue"
+    elif "Capacidad de Personalización" in name:
+        return "orange"
+    elif "Ahorro de Tiempo" in name:
+        return "purple"
+    elif "No Ventajas" in name:
+        return "black"
+    
+    
+    if "Reflexivo" in name:
+        return "green"
+    elif "Entusiasta" in name:
+        return "blue"
+    elif "Cauteloso" in name:
+        return "yellow"
+    
+
+    else:
+        return "grey"  # Default color
+    
+
+def get_color_by_gsc_demo(name):
+    gsc = gsc_map.get(name, '').lower()  # Convertimos a minúsculas para hacer la comparación case-insensitive
+    if "entusiasta" in gsc:
+        return "#008000"  # Verde
+    elif "positiva con reservas" in gsc:
+        return "#00FF00"  # Lima
+    elif "balanceada e interesado" in gsc:
+        return "#FFFF00"  # Amarillo
+    elif "neutral" in gsc:
+        return "#FFA500"  # Naranja
+    elif "cauteloso" in gsc:
+        return "#FF0000"  # Rojo
+    elif "escéptico" in gsc:
+        return "#800080"  # Púrpura
+    else: 
+        return "#808080"  # Gris (por defecto)
+
+# Define colors for each profile
+def get_color(name):
+
+    # return get_color_by_raw_interview(name)
+    # return get_color_by_gsc(name)
+    return get_color_by_gsc_demo(name)
+
+
 # Assign colors to each label
 colors = [get_color(name) for name in label]
 
@@ -144,7 +173,7 @@ for i, name in enumerate(label):
     if "NPC" in name:
         plt.annotate(name, (x[i], y[i]), fontsize="0", color="black")
     else:
-        plt.annotate(name[0:19], (x[i], y[i]), fontsize="3", color="black")  # Increased font size to 12 and set color to white
+        plt.annotate(name[0:19], (x[i], y[i]), fontsize="0", color="black")  # Increased font size to 12 and set color to white
 
 # Clean-up and Export
 plt.axis('off')
